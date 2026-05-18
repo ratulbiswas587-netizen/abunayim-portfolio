@@ -1,0 +1,38 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A portfolio project uploaded by the admin.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The title of the project." },
+        "clientName": { "type": "string", "description": "Client or project name (optional)." },
+        "categoryId": { "type": "number", "description": "The category ID the project belongs to." },
+        "subCategoryId": { "type": "number", "description": "The subcategory ID the project belongs to (optional)." },
+        "imageUrl": { "type": "string", "description": "The image thumbnail for the project." },
+        "videoUrl": { "type": "string", "description": "The URL of the video, if applicable." },
+        "createdAt": { "type": "number", "description": "Timestamp when the project was created." }
+      },
+      "required": ["title", "categoryId", "imageUrl", "createdAt"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "An admin user who can upload projects.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" }
+      },
+      "required": ["email"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/Project" },
+      "description": "A collection of all portfolio projects."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "A list of authorized admins."
+    }
+  }
+}
